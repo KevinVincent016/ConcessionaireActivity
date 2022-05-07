@@ -6,8 +6,8 @@ public class GasolineCar extends Car implements FuelConsumption{
     private double fuelConsume;
     private FuelType fuelType;
 
-    public GasolineCar(double basePrice, String brand, String model, int cylinderCapacity, int klm, int ownershipCard, String plate, int statusOption, Document theDocuments, int doorsNumber, boolean polarization, int cartype, double fuelCapacity, double fuelConsume, int fuelOption){
-        super(basePrice, brand, model, cylinderCapacity, klm, ownershipCard, plate, statusOption, theDocuments, doorsNumber, polarization, cartype);
+    public GasolineCar(double basePrice, String brand, String model, int cylinderCapacity, int klm, OwnershipCard ownershipCard, String plate, int statusOption, SOAT theSoat, Tecnomechanics theTecnomechanics, int doorsNumber, boolean polarization, int cartype, double fuelCapacity, double fuelConsume, int fuelOption){
+        super(basePrice, brand, model, cylinderCapacity, klm, ownershipCard, plate, statusOption, theSoat, theTecnomechanics, doorsNumber, polarization, cartype);
         this.fuelCapacity = fuelCapacity;
         this.fuelConsume = fuelConsume;
         fuelType = null;

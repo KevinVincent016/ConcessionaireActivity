@@ -152,7 +152,7 @@ public class Main {
         int klm = sc.nextInt();
         sc.nextLine();
         System.out.println("Con cuantas puertas cuenta el vehiculo");
-        String doorsNumber = sc.nextLine();
+        int doorsNumber = sc.nextInt();
         System.out.println("Las ventanas del vehiculo se encuentran polarizadas?");
         String option = sc.nextLine();
         boolean polarization = false;

@@ -16,4 +16,11 @@ public class Concessionaire {
         this.name = name;
     }
 
+    public char[] registerGasCar(double basePrice, String brand, String model, int cylinderCapacity, int klm,
+            OwnershipCard theOwnershipCard, String plate, int statusOption, SOAT theSoat,
+            Tecnomechanics theTecnomechanics, int doorsNumber, boolean polarization, int cartype, double fuelCapacity,
+            double fuelConsume, int fuelOption) {
+        return null;
+    }
+
 }

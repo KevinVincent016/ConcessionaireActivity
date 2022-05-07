@@ -9,13 +9,14 @@ public abstract class Vehicle {
     private String model;
     private int cylinderCapacity;
     private int klm;
-    private int ownershipCard;
+    private OwnershipCard ownershipCard;
     private String plate;
     private Status theStatus;
-    private Document theDocuments;
+    private SOAT theSoat;
+    private Tecnomechanics theTecnomechanics;
     private ArrayList <Vehicle> theVehicles;
 
-    public Vehicle(double basePrice, String brand, String model, int cylinderCapacity, int klm, int ownershipCard, String plate, int statusOption, Document theDocuments){
+    public Vehicle(double basePrice, String brand, String model, int cylinderCapacity, int klm, OwnershipCard ownershipCard, String plate, int statusOption, SOAT theSoat, Tecnomechanics theTecnomechanics){
         this.basePrice=basePrice;
         this.brand=brand;
         this.model=model;
@@ -29,7 +30,8 @@ public abstract class Vehicle {
         }else if(statusOption==2){
             theStatus=theStatus.USADO;
         }
-        this.theDocuments = theDocuments;
+        this.theSoat = theSoat;
+        this.theTecnomechanics = theTecnomechanics;
         theVehicles = new ArrayList<>();
     }
 
@@ -89,20 +91,20 @@ public abstract class Vehicle {
         this.klm = klm;
     }
 
-    public int getOwnershipCard() {
-        return this.ownershipCard;
-    }
-
-    public void setOwnershipCard(int ownershipCard) {
-        this.ownershipCard = ownershipCard;
-    }
-
     public Status getTheStatus() {
         return this.theStatus;
     }
 
     public void setTheStatus(Status theStatus) {
         this.theStatus = theStatus;
+    }
+
+    public String registerGasCar(double basePrice, String brand, String model, int cylinderCapacity, int klm, OwnershipCard ownershipCard, String plate, int statusOption, SOAT theSoat, Tecnomechanics theTecnomechanics, int doorsNumber, boolean polarization, int cartype, double fuelCapacity, double fuelConsume, int fuelOption){
+        String out = "";
+        GasolineCar theCar = new GasolineCar(basePrice, brand, model, cylinderCapacity, klm, ownershipCard, plate, statusOption, theSoat, theTecnomechanics, doorsNumber, polarization, cartype, fuelCapacity, fuelConsume, fuelOption);
+        theVehicles.add(theCar);
+        out = "Carro " + model + " de la marca " + brand + " registrado";
+        return out;
     }
 
 }

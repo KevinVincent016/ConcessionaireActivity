@@ -9,8 +9,8 @@ public class HybridCar extends Car implements BatteryConsumption,FuelConsumption
     private FuelType hybridFuelType;
     private ChargerType hybridChargerType;
 
-    public HybridCar(double basePrice, String brand, String model, int cylinderCapacity, int  klm, int ownershipCard, String plate, int statusOption, Document theDocuments, int doorsNumber, boolean polarization, int cartype, double fuelCapacity, double fuelConsume, int fuelOption, double batteryDuration, double batteryConsume, int chargerOption){
-        super(basePrice, brand, model, cylinderCapacity, klm, ownershipCard, plate, statusOption, theDocuments, doorsNumber, polarization, cartype);
+    public HybridCar(double basePrice, String brand, String model, int cylinderCapacity, int  klm, OwnershipCard ownershipCard, String plate, int statusOption, SOAT theSoat, Tecnomechanics theTecnomechanics, int doorsNumber, boolean polarization, int cartype, double fuelCapacity, double fuelConsume, int fuelOption, double batteryDuration, double batteryConsume, int chargerOption){
+        super(basePrice, brand, model, cylinderCapacity, klm, ownershipCard, plate, statusOption, theSoat, theTecnomechanics, doorsNumber, polarization, cartype);
         this.fuelCapacity=fuelCapacity;
         this.fuelConsume=fuelConsume;
         this.batteryConsume=batteryConsume;
