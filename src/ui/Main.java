@@ -1,13 +1,7 @@
 package ui;
-import java.io.Console;
 import java.util.*;
 
-import javax.swing.plaf.synth.SynthSpinnerUI;
-
 import model.Concessionaire;
-import model.OwnershipCard;
-import model.SOAT;
-import model.Tecnomechanics;
 
 public class Main {
 	
@@ -143,8 +137,9 @@ public class Main {
         sc.nextLine();
         System.out.println("Cual es la marca del vehiculo");
         String brand = sc.nextLine();
-        System.out.println("Cual es el modelo del vehiculo");
-        String model = sc.nextLine();
+        System.out.println("Cual es el año del modelo del vehiculo");
+        int model = sc.nextInt();
+        sc.nextLine();
         System.out.println("Cual es el cilindraje");
         int cylinderCapacity = sc.nextInt();
         sc.nextLine();
@@ -173,8 +168,6 @@ public class Main {
         System.out.println("Cual es el consumo (galones por km) del vehiculo");
         double fuelConsume = sc.nextDouble();
         sc.nextLine();
-        System.out.println("Indicar la placa del vehiculo");
-        String plate = sc.nextLine();
         System.out.println("El vehiculo a registrar en que estado esta");
         System.out.println("(1) Nuevo");
         System.out.println("(2) Usado");
@@ -184,42 +177,451 @@ public class Main {
             statusOption = sc.nextInt();
         }
         sc.nextLine();
+        String plate = "";
+        if(statusOption==2){
+            System.out.println("Indicar la placa del vehiculo");
+            plate = sc.nextLine();
+        }else{
+            plate = "No aplica";
+        }
         System.out.println("Ahora que se tienen estos datos, vamos a registrar datos mas especificos");
         switch(statusOption){
             case 1:
-            SOAT theSoat = null;
-            OwnershipCard theOwnershipCard = null;
+            double soPrice = 0;
+            String soYear = "0";
+            int soImage = 0;
+            double soCoverageAmount = 0;
+
+            double owPrice = 0;
+            String owYear = "0";
+            int owImage = 0;
+
             System.out.println("Relacionado a la tecnomecanica");
             System.out.println("Cual es el valor");
-            double tecPrice = sc.nextDouble();
+            double tePrice = sc.nextDouble();
             sc.nextLine();
             System.out.println("De que año es la tecnomecanica");
-            String tecYear = sc.nextLine();
+            String teYear = sc.nextLine();
             System.out.println("Cual es la 'imagen' de la tecnomecanica");
-            int tecImage = sc.nextInt();
+            int teImage = sc.nextInt();
             System.out.println("Cual es el nivel de gases que emite el vehiculo");
-            int gasLevels = sc.nextInt();
-            Tecnomechanics theTecnomechanics = new Tecnomechanics(tecPrice, tecYear, tecImage, gasLevels);
-            System.out.println(theConcessionaire.registerGasCar(basePrice,brand,model,cylinderCapacity,klm,theOwnershipCard,plate,statusOption,theSoat,theTecnomechanics,doorsNumber,polarization,cartype,fuelCapacity,fuelConsume,fuelOption));
+            int teGasLevels = sc.nextInt();
+            sc.nextLine();
+            System.out.println(theConcessionaire.registerGasCar(basePrice,brand,model,cylinderCapacity,klm,owPrice,owYear,owImage,plate,statusOption,soPrice,soYear,soImage,soCoverageAmount,tePrice,teYear,teImage,teGasLevels,doorsNumber,polarization,cartype,fuelCapacity,fuelConsume,fuelOption));
             break;
 
             case 2:
-            System.out.println("El vehiculo cuenta con SOAT?");
+            double soPrice1;
+            String soYear1;
+            int soImage1;
+            double soCoverageAmount1;
+
+            double tePrice1;
+            String teYear1;
+            int teImage1;
+            int teGasLevels1;
+
+            double owPrice1;
+            String owYear1;
+            int owImage1;
+
+            System.out.println("El vehiculo cuenta con SOAT? (Si/No)");
             String answer1 = sc.nextLine();
             if(answer1.equalsIgnoreCase("si")){
-
+                System.out.println("Cual es el valor del SOAT?");
+                soPrice1 = sc.nextDouble();
+                sc.nextLine();
+                System.out.println("De que año es el SOAT?");
+                soYear1 = sc.nextLine();
+                System.out.println("IMAGE");
+                soImage1 = sc.nextInt();
+                sc.nextLine();
+                System.out.println("Cual es la covertura del SOAT?");
+                soCoverageAmount1 = sc.nextDouble();
+                sc.nextLine();
             }else{
-                SOAT theSoat2 = null;
+                soPrice1 = 0;
+                soYear1 = "0";
+                soImage1 = 0;
+                soCoverageAmount1 = 0;
             }
+            System.out.println("El vehiculo cuenta con Tecnomecanica? (Si/No)");
+            String answer2 = sc.nextLine();
+            if(answer2.equalsIgnoreCase("si")){
+                System.out.println("Cual es el valor de la Tecnomecanica?");
+                tePrice1 = sc.nextDouble();
+                sc.nextLine();
+                System.out.println("De que año es la Tecnomecanica?");
+                teYear1 = sc.nextLine();
+                System.out.println("IMAGE");
+                teImage1 = sc.nextInt();
+                sc.nextLine();
+                System.out.println("Cual es el nivel de gases emitidos?");
+                teGasLevels1 = sc.nextInt();
+                sc.nextLine();
+            }else{
+                tePrice1 = 0;
+                teYear1 = "0";
+                teImage1 = 0;
+                teGasLevels1 = 0;
+            }
+            System.out.println("El vehiculo cuenta con Tarjeta de propiedad? (Si/No)");
+            String answer3 = sc.nextLine();
+            if(answer3.equalsIgnoreCase("si")){
+                System.out.println("Cual es el valor de la tarjeta de propiedad?");
+                owPrice1 = sc.nextDouble();
+                sc.nextLine();
+                System.out.println("De que año es la tarjeta de propiedad?");
+                owYear1 = sc.nextLine();
+                System.out.println("IMAGE");
+                owImage1 = sc.nextInt();
+                sc.nextLine();
+            }else{
+                owPrice1 = 0;
+                owYear1 = "0";
+                owImage1 = 0;
+            }
+            System.out.println(theConcessionaire.registerGasCar(basePrice,brand,model,cylinderCapacity,klm,owPrice1,owYear1,owImage1,plate,statusOption,soPrice1,soYear1,soImage1,soCoverageAmount1,tePrice1,teYear1,teImage1,teGasLevels1,doorsNumber,polarization,cartype,fuelCapacity,fuelConsume,fuelOption));
+            break;
         }
     }
 
     public void registerElectricCar(){
+        System.out.println("Para registrar un auto de gasolina, se necesitan primero los siguientes datos basicos");
+        System.out.println("Que tipo de carro es");
+        System.out.println("(1) Sedan");
+        System.out.println("(2) Camioneta");
+        int cartype = sc.nextInt();
+        if(cartype>2){
+            System.out.println("Opcion incorrecta");
+            cartype = sc.nextInt();
+        }
+        System.out.println("Indicar el precio base del carro");
+        double basePrice = sc.nextDouble();
+        sc.nextLine();
+        System.out.println("Cual es la marca del vehiculo");
+        String brand = sc.nextLine();
+        System.out.println("Cual es el año del modelo del vehiculo");
+        int model = sc.nextInt();
+        sc.nextLine();
+        System.out.println("Cual es el cilindraje");
+        int cylinderCapacity = sc.nextInt();
+        sc.nextLine();
+        System.out.println("Cual es el kilometraje");
+        int klm = sc.nextInt();
+        sc.nextLine();
+        System.out.println("Con cuantas puertas cuenta el vehiculo");
+        int doorsNumber = sc.nextInt();
+        System.out.println("Las ventanas del vehiculo se encuentran polarizadas?");
+        String option = sc.nextLine();
+        boolean polarization = false;
+        if(option.equalsIgnoreCase("si")){
+            polarization = true;
+        }else if(option.equalsIgnoreCase("no")){
+            polarization = false;
+        }
+        System.out.println("Que tipo de cargador tiene el vehiculo");
+        System.out.println("(1) Normal");
+        System.out.println("(2) Rapido");
+        int chargerOption = sc.nextInt();
+        sc.nextLine(); 
+        System.out.println("Cual es la duracion de la bateria (por km)");
+        double batteryDuration = sc.nextDouble();
+        sc.nextLine();
+        System.out.println("Cual es el consumo (kilowatts por hora) del vehiculo");
+        double batteryConsume = sc.nextDouble();
+        sc.nextLine();
+        System.out.println("El vehiculo a registrar en que estado esta");
+        System.out.println("(1) Nuevo");
+        System.out.println("(2) Usado");
+        int statusOption = sc.nextInt();
+        if(statusOption>2){
+            System.out.println("Opcion incorrecta");
+            statusOption = sc.nextInt();
+        }
+        String plate = "";
+        if(statusOption==2){
+            System.out.println("Indicar la placa del vehiculo");
+            plate = sc.nextLine();
+        }else{
+            plate = "No aplica";
+        }
+        sc.nextLine();
+        System.out.println("Ahora que se tienen estos datos, vamos a registrar datos mas especificos");
+        switch(statusOption){
+            case 1:
+            double soPrice = 0;
+            String soYear = "0";
+            int soImage = 0;
+            double soCoverageAmount = 0;
 
+            double owPrice = 0;
+            String owYear = "0";
+            int owImage = 0;
+
+            System.out.println("Relacionado a la tecnomecanica");
+            System.out.println("Cual es el valor");
+            double tePrice = sc.nextDouble();
+            sc.nextLine();
+            System.out.println("De que año es la tecnomecanica");
+            String teYear = sc.nextLine();
+            System.out.println("Cual es la 'imagen' de la tecnomecanica");
+            int teImage = sc.nextInt();
+            System.out.println("Cual es el nivel de gases que emite el vehiculo");
+            int teGasLevels = sc.nextInt();
+            sc.nextLine();
+            System.out.println(theConcessionaire.registerGasCar(basePrice,brand,model,cylinderCapacity,klm,owPrice,owYear,owImage,plate,statusOption,soPrice,soYear,soImage,soCoverageAmount,tePrice,teYear,teImage,teGasLevels,doorsNumber,polarization,cartype,batteryDuration,batteryConsume,chargerOption));
+            break;
+
+            case 2:
+            double soPrice1;
+            String soYear1;
+            int soImage1;
+            double soCoverageAmount1;
+
+            double tePrice1;
+            String teYear1;
+            int teImage1;
+            int teGasLevels1;
+
+            double owPrice1;
+            String owYear1;
+            int owImage1;
+
+            System.out.println("El vehiculo cuenta con SOAT? (Si/No)");
+            String answer1 = sc.nextLine();
+            if(answer1.equalsIgnoreCase("si")){
+                System.out.println("Cual es el valor del SOAT?");
+                soPrice1 = sc.nextDouble();
+                sc.nextLine();
+                System.out.println("De que año es el SOAT?");
+                soYear1 = sc.nextLine();
+                System.out.println("IMAGE");
+                soImage1 = sc.nextInt();
+                sc.nextLine();
+                System.out.println("Cual es la covertura del SOAT?");
+                soCoverageAmount1 = sc.nextDouble();
+                sc.nextLine();
+            }else{
+                soPrice1 = 0;
+                soYear1 = "0";
+                soImage1 = 0;
+                soCoverageAmount1 = 0;
+            }
+            System.out.println("El vehiculo cuenta con Tecnomecanica? (Si/No)");
+            String answer2 = sc.nextLine();
+            if(answer2.equalsIgnoreCase("si")){
+                System.out.println("Cual es el valor de la Tecnomecanica?");
+                tePrice1 = sc.nextDouble();
+                sc.nextLine();
+                System.out.println("De que año es la Tecnomecanica?");
+                teYear1 = sc.nextLine();
+                System.out.println("IMAGE");
+                teImage1 = sc.nextInt();
+                sc.nextLine();
+                System.out.println("Cual es el nivel de gases emitidos?");
+                teGasLevels1 = sc.nextInt();
+                sc.nextLine();
+            }else{
+                tePrice1 = 0;
+                teYear1 = "0";
+                teImage1 = 0;
+                teGasLevels1 = 0;
+            }
+            System.out.println("El vehiculo cuenta con Tarjeta de propiedad? (Si/No)");
+            String answer3 = sc.nextLine();
+            if(answer3.equalsIgnoreCase("si")){
+                System.out.println("Cual es el valor de la tarjeta de propiedad?");
+                owPrice1 = sc.nextDouble();
+                sc.nextLine();
+                System.out.println("De que año es la tarjeta de propiedad?");
+                owYear1 = sc.nextLine();
+                System.out.println("IMAGE");
+                owImage1 = sc.nextInt();
+                sc.nextLine();
+            }else{
+                owPrice1 = 0;
+                owYear1 = "0";
+                owImage1 = 0;
+            }
+            System.out.println(theConcessionaire.registerGasCar(basePrice,brand,model,cylinderCapacity,klm,owPrice1,owYear1,owImage1,plate,statusOption,soPrice1,soYear1,soImage1,soCoverageAmount1,tePrice1,teYear1,teImage1,teGasLevels1,doorsNumber,polarization,cartype,batteryDuration,batteryConsume,chargerOption));
+            break;
+        }
     }
     
     public void registerHybridCar(){
+        System.out.println("Para registrar un auto de gasolina, se necesitan primero los siguientes datos basicos");
+        System.out.println("Que tipo de carro es");
+        System.out.println("(1) Sedan");
+        System.out.println("(2) Camioneta");
+        int cartype = sc.nextInt();
+        if(cartype>2){
+            System.out.println("Opcion incorrecta");
+            cartype = sc.nextInt();
+        }
+        System.out.println("Indicar el precio base del carro");
+        double basePrice = sc.nextDouble();
+        sc.nextLine();
+        System.out.println("Cual es la marca del vehiculo");
+        String brand = sc.nextLine();
+        System.out.println("Cual es el año del modelo del vehiculo");
+        int model = sc.nextInt();
+        sc.nextLine();
+        System.out.println("Cual es el cilindraje");
+        int cylinderCapacity = sc.nextInt();
+        sc.nextLine();
+        System.out.println("Cual es el kilometraje");
+        int klm = sc.nextInt();
+        sc.nextLine();
+        System.out.println("Con cuantas puertas cuenta el vehiculo");
+        int doorsNumber = sc.nextInt();
+        System.out.println("Las ventanas del vehiculo se encuentran polarizadas?");
+        String option = sc.nextLine();
+        boolean polarization = false;
+        if(option.equalsIgnoreCase("si")){
+            polarization = true;
+        }else if(option.equalsIgnoreCase("no")){
+            polarization = false;
+        }
+        System.out.println("Que tipo de gasolina consume el vehiculo");
+        System.out.println("(1) Extra");
+        System.out.println("(2) Corriente");
+        System.out.println("(3) Diesel");
+        int fuelOption = sc.nextInt();
+        sc.nextLine(); 
+        System.out.println("Cual es la capacidad del tanque de gasolina (galones)");
+        double fuelCapacity = sc.nextDouble();
+        sc.nextLine();
+        System.out.println("Cual es el consumo (galones por km) del vehiculo");
+        double fuelConsume = sc.nextDouble();
+        sc.nextLine();
+        System.out.println("Que tipo de cargador tiene el vehiculo");
+        System.out.println("(1) Normal");
+        System.out.println("(2) Rapido");
+        int chargerOption = sc.nextInt();
+        sc.nextLine(); 
+        System.out.println("Cual es la duracion de la bateria (por km)");
+        double batteryDuration = sc.nextDouble();
+        sc.nextLine();
+        System.out.println("Cual es el consumo (kilowatts por hora) del vehiculo");
+        double batteryConsume = sc.nextDouble();
+        sc.nextLine();
+        System.out.println("El vehiculo a registrar en que estado esta");
+        System.out.println("(1) Nuevo");
+        System.out.println("(2) Usado");
+        int statusOption = sc.nextInt();
+        if(statusOption>2){
+            System.out.println("Opcion incorrecta");
+            statusOption = sc.nextInt();
+        }
+        sc.nextLine();
+        String plate = "";
+        if(statusOption==2){
+            System.out.println("Indicar la placa del vehiculo");
+            plate = sc.nextLine();
+        }else{
+            plate = "No aplica";
+        }
+        System.out.println("Ahora que se tienen estos datos, vamos a registrar datos mas especificos");
+        switch(statusOption){
+            case 1:
+            double soPrice = 0;
+            String soYear = "0";
+            int soImage = 0;
+            double soCoverageAmount = 0;
 
+            double owPrice = 0;
+            String owYear = "0";
+            int owImage = 0;
+
+            System.out.println("Relacionado a la tecnomecanica");
+            System.out.println("Cual es el valor");
+            double tePrice = sc.nextDouble();
+            sc.nextLine();
+            System.out.println("De que año es la tecnomecanica");
+            String teYear = sc.nextLine();
+            System.out.println("Cual es la 'imagen' de la tecnomecanica");
+            int teImage = sc.nextInt();
+            System.out.println("Cual es el nivel de gases que emite el vehiculo");
+            int teGasLevels = sc.nextInt();
+            sc.nextLine();
+            System.out.println(theConcessionaire.registerHybridCar(basePrice,brand,model,cylinderCapacity,klm,owPrice,owYear,owImage,plate,statusOption,soPrice,soYear,soImage,soCoverageAmount,tePrice,teYear,teImage,teGasLevels,doorsNumber,polarization,cartype,fuelCapacity,fuelConsume,fuelOption,batteryDuration,batteryConsume,chargerOption));
+            break;
+
+            case 2:
+            double soPrice1;
+            String soYear1;
+            int soImage1;
+            double soCoverageAmount1;
+
+            double tePrice1;
+            String teYear1;
+            int teImage1;
+            int teGasLevels1;
+
+            double owPrice1;
+            String owYear1;
+            int owImage1;
+
+            System.out.println("El vehiculo cuenta con SOAT? (Si/No)");
+            String answer1 = sc.nextLine();
+            if(answer1.equalsIgnoreCase("si")){
+                System.out.println("Cual es el valor del SOAT?");
+                soPrice1 = sc.nextDouble();
+                sc.nextLine();
+                System.out.println("De que año es el SOAT?");
+                soYear1 = sc.nextLine();
+                System.out.println("IMAGE");
+                soImage1 = sc.nextInt();
+                sc.nextLine();
+                System.out.println("Cual es la covertura del SOAT?");
+                soCoverageAmount1 = sc.nextDouble();
+                sc.nextLine();
+            }else{
+                soPrice1 = 0;
+                soYear1 = "0";
+                soImage1 = 0;
+                soCoverageAmount1 = 0;
+            }
+            System.out.println("El vehiculo cuenta con Tecnomecanica? (Si/No)");
+            String answer2 = sc.nextLine();
+            if(answer2.equalsIgnoreCase("si")){
+                System.out.println("Cual es el valor de la Tecnomecanica?");
+                tePrice1 = sc.nextDouble();
+                sc.nextLine();
+                System.out.println("De que año es la Tecnomecanica?");
+                teYear1 = sc.nextLine();
+                System.out.println("IMAGE");
+                teImage1 = sc.nextInt();
+                sc.nextLine();
+                System.out.println("Cual es el nivel de gases emitidos?");
+                teGasLevels1 = sc.nextInt();
+                sc.nextLine();
+            }else{
+                tePrice1 = 0;
+                teYear1 = "0";
+                teImage1 = 0;
+                teGasLevels1 = 0;
+            }
+            System.out.println("El vehiculo cuenta con Tarjeta de propiedad? (Si/No)");
+            String answer3 = sc.nextLine();
+            if(answer3.equalsIgnoreCase("si")){
+                System.out.println("Cual es el valor de la tarjeta de propiedad?");
+                owPrice1 = sc.nextDouble();
+                sc.nextLine();
+                System.out.println("De que año es la tarjeta de propiedad?");
+                owYear1 = sc.nextLine();
+                System.out.println("IMAGE");
+                owImage1 = sc.nextInt();
+                sc.nextLine();
+            }else{
+                owPrice1 = 0;
+                owYear1 = "0";
+                owImage1 = 0;
+            }
+            System.out.println(theConcessionaire.registerHybridCar(basePrice,brand,model,cylinderCapacity,klm,owPrice1,owYear1,owImage1,plate,statusOption,soPrice1,soYear1,soImage1,soCoverageAmount1,tePrice1,teYear1,teImage1,teGasLevels1,doorsNumber,polarization,cartype,fuelCapacity,fuelConsume,fuelOption,batteryDuration,batteryConsume,chargerOption));
+            break;
+        } 
     }
 
     public void registerMotorcycle(){

@@ -6,7 +6,7 @@ public class GasolineCar extends Car implements FuelConsumption{
     private double fuelConsume;
     private FuelType fuelType;
 
-    public GasolineCar(double basePrice, String brand, String model, int cylinderCapacity, int klm, OwnershipCard ownershipCard, String plate, int statusOption, SOAT theSoat, Tecnomechanics theTecnomechanics, int doorsNumber, boolean polarization, int cartype, double fuelCapacity, double fuelConsume, int fuelOption){
+    public GasolineCar(double basePrice, String brand, int model, int cylinderCapacity, int klm, OwnershipCard ownershipCard, String plate, int statusOption, SOAT theSoat, Tecnomechanics theTecnomechanics, int doorsNumber, boolean polarization, int cartype, double fuelCapacity, double fuelConsume, int fuelOption){
         super(basePrice, brand, model, cylinderCapacity, klm, ownershipCard, plate, statusOption, theSoat, theTecnomechanics, doorsNumber, polarization, cartype);
         this.fuelCapacity = fuelCapacity;
         this.fuelConsume = fuelConsume;
@@ -53,4 +53,10 @@ public class GasolineCar extends Car implements FuelConsumption{
         return consume;
     }
 
+    public String toString(){
+        return super.toString() + "\n" +
+        "Capacidad de gasolina: " + fuelCapacity + "\n" +
+        "Consumo de gasolina: " + fuelConsume + "\n" +
+        "Tipo de gasolina: " + fuelType + "\n";
+    }
 }

@@ -1,12 +1,11 @@
 package model;
-import java.util.ArrayList;
 
 public abstract class Vehicle {
     
     private double basePrice;
     private double sellPrice;
     private String brand;
-    private String model;
+    private int model;
     private int cylinderCapacity;
     private int klm;
     private OwnershipCard ownershipCard;
@@ -14,9 +13,8 @@ public abstract class Vehicle {
     private Status theStatus;
     private SOAT theSoat;
     private Tecnomechanics theTecnomechanics;
-    private ArrayList <Vehicle> theVehicles;
 
-    public Vehicle(double basePrice, String brand, String model, int cylinderCapacity, int klm, OwnershipCard ownershipCard, String plate, int statusOption, SOAT theSoat, Tecnomechanics theTecnomechanics){
+    public Vehicle(double basePrice, String brand, int model, int cylinderCapacity, int klm, OwnershipCard ownershipCard, String plate, int statusOption, SOAT theSoat, Tecnomechanics theTecnomechanics){
         this.basePrice=basePrice;
         this.brand=brand;
         this.model=model;
@@ -32,7 +30,6 @@ public abstract class Vehicle {
         }
         this.theSoat = theSoat;
         this.theTecnomechanics = theTecnomechanics;
-        theVehicles = new ArrayList<>();
     }
 
     public double getBasePrice() {
@@ -59,11 +56,11 @@ public abstract class Vehicle {
         this.brand = brand;
     }
 
-    public String getModel() {
+    public int getModel() {
         return this.model;
     }
 
-    public void setModel(String model) {
+    public void setModel(int model) {
         this.model = model;
     }
 
@@ -99,12 +96,35 @@ public abstract class Vehicle {
         this.theStatus = theStatus;
     }
 
-    public String registerGasCar(double basePrice, String brand, String model, int cylinderCapacity, int klm, OwnershipCard ownershipCard, String plate, int statusOption, SOAT theSoat, Tecnomechanics theTecnomechanics, int doorsNumber, boolean polarization, int cartype, double fuelCapacity, double fuelConsume, int fuelOption){
-        String out = "";
-        GasolineCar theCar = new GasolineCar(basePrice, brand, model, cylinderCapacity, klm, ownershipCard, plate, statusOption, theSoat, theTecnomechanics, doorsNumber, polarization, cartype, fuelCapacity, fuelConsume, fuelOption);
-        theVehicles.add(theCar);
-        out = "Carro " + model + " de la marca " + brand + " registrado";
-        return out;
+    public String toString(){
+        String owCard = "";
+        String soat = "";
+        String tecno = "";
+        if(ownershipCard==null){
+            owCard = "No aplica";
+        }else{
+            owCard = ownershipCard.toString();
+        }
+        if(theSoat==null){
+            soat = "No aplica";
+        }else{
+            soat = theSoat.toString();
+        }
+        if(theTecnomechanics==null){
+            tecno = "No aplica";
+        }else{
+            tecno = theTecnomechanics.toString();
+        }
+        return "\nPrecio base: " + basePrice + "\n" +
+        "Precio de venta: " + sellPrice + "\n" +
+        "Marca: " + brand + "\n" +
+        "Año del modelo: " + model + "\n" +
+        "cilindraje: " + cylinderCapacity + "\n" +
+        "kilometraje: " + klm + "\n" +
+        "Placa: " + plate + "\n" +
+        "Estado: " + theStatus + "\n" +
+        "Tarjeta de propiedad:\n" + owCard + "\n" + 
+        "SOAT:\n" + soat + "\n" +
+        "Tecnomecanica:\n" + tecno + "\n";
     }
-
 }

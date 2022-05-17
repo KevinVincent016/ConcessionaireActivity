@@ -9,7 +9,7 @@ public class HybridCar extends Car implements BatteryConsumption,FuelConsumption
     private FuelType hybridFuelType;
     private ChargerType hybridChargerType;
 
-    public HybridCar(double basePrice, String brand, String model, int cylinderCapacity, int  klm, OwnershipCard ownershipCard, String plate, int statusOption, SOAT theSoat, Tecnomechanics theTecnomechanics, int doorsNumber, boolean polarization, int cartype, double fuelCapacity, double fuelConsume, int fuelOption, double batteryDuration, double batteryConsume, int chargerOption){
+    public HybridCar(double basePrice, String brand, int model, int cylinderCapacity, int  klm, OwnershipCard ownershipCard, String plate, int statusOption, SOAT theSoat, Tecnomechanics theTecnomechanics, int doorsNumber, boolean polarization, int cartype, double fuelCapacity, double fuelConsume, int fuelOption, double batteryDuration, double batteryConsume, int chargerOption){
         super(basePrice, brand, model, cylinderCapacity, klm, ownershipCard, plate, statusOption, theSoat, theTecnomechanics, doorsNumber, polarization, cartype);
         this.fuelCapacity=fuelCapacity;
         this.fuelConsume=fuelConsume;
@@ -91,4 +91,13 @@ public class HybridCar extends Car implements BatteryConsumption,FuelConsumption
         return consume;
     }
 
+    public String toString(){
+        return super.toString() + "\n" +
+        "Capacidad de gasolina: " + fuelCapacity + "\n" +
+        "Consumo de gasolina: " + fuelConsume + "\n" +
+        "Tipo de gasolina: " + hybridFuelType + "\n" +
+        "Duracion de bateria: " + batteryDuration + "\n" +
+        "Consumo de bateria: " + batteryConsume + "\n" +
+        "Tipo de cargador: " + hybridChargerType + "\n";
+    }
 }

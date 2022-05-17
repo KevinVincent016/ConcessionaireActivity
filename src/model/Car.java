@@ -6,7 +6,7 @@ public abstract class Car extends Vehicle {
     private boolean polarization;
     private CarType theType;
     
-    public Car(double basePrice, String brand, String model, int cylinderCapacity, int klm, OwnershipCard ownershipCard, String plate, int statusOption, SOAT theSoat, Tecnomechanics theTecnomechanics, int doorsNumber, boolean polarization, int cartype){
+    public Car(double basePrice, String brand, int model, int cylinderCapacity, int klm, OwnershipCard ownershipCard, String plate, int statusOption, SOAT theSoat, Tecnomechanics theTecnomechanics, int doorsNumber, boolean polarization, int cartype){
         super(basePrice, brand, model, cylinderCapacity, klm, ownershipCard, plate, statusOption, theSoat, theTecnomechanics);
         this.doorsNumber=doorsNumber;
         this.polarization=polarization;
@@ -46,4 +46,10 @@ public abstract class Car extends Vehicle {
         this.theType = theType;
     }
 
+    public String toString(){
+        return super.toString() + "\n" +
+        "Numero de puertas: " + doorsNumber + "\n" +
+        "Polarizacion de ventanas: " + polarization + "\n" +
+        "Tipo de carro: " + theType + "\n";
+    }
 }
