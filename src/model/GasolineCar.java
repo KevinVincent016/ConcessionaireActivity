@@ -6,10 +6,10 @@ public class GasolineCar extends Car implements FuelConsumption{
     private double fuelConsume;
     private FuelType fuelType;
 
-    public GasolineCar(double basePrice, String brand, int model, int cylinderCapacity, int klm, OwnershipCard ownershipCard, String plate, int statusOption, SOAT theSoat, Tecnomechanics theTecnomechanics, int doorsNumber, boolean polarization, int cartype, double fuelCapacity, double fuelConsume, int fuelOption){
+    public GasolineCar(double basePrice, String brand, int model, int cylinderCapacity, int klm, OwnershipCard ownershipCard, String plate, int statusOption, SOAT theSoat, Tecnomechanics theTecnomechanics, int doorsNumber, boolean polarization, int cartype, double fuelCapacity, int fuelOption){
         super(basePrice, brand, model, cylinderCapacity, klm, ownershipCard, plate, statusOption, theSoat, theTecnomechanics, doorsNumber, polarization, cartype);
         this.fuelCapacity = fuelCapacity;
-        this.fuelConsume = fuelConsume;
+        this.fuelConsume = calculateFuelConsume();
         fuelType = null;
         switch(fuelOption){
             case 1:
@@ -49,7 +49,7 @@ public class GasolineCar extends Car implements FuelConsumption{
     }
 
     public double calculateFuelConsume(){
-        double consume = 0.0;
+        double consume = fuelCapacity*(super.getCylinderCapacity()/150);
         return consume;
     }
 

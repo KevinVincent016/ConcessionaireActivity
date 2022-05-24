@@ -16,6 +16,7 @@ public abstract class Vehicle {
 
     public Vehicle(double basePrice, String brand, int model, int cylinderCapacity, int klm, OwnershipCard ownershipCard, String plate, int statusOption, SOAT theSoat, Tecnomechanics theTecnomechanics){
         this.basePrice=basePrice;
+        this.sellPrice=0;
         this.brand=brand;
         this.model=model;
         this.cylinderCapacity=cylinderCapacity;
@@ -24,9 +25,9 @@ public abstract class Vehicle {
         this.plate=plate;
         theStatus=null;
         if(statusOption==1){
-            theStatus=theStatus.NUEVO;
+            theStatus=Status.NUEVO;
         }else if(statusOption==2){
-            theStatus=theStatus.USADO;
+            theStatus=Status.USADO;
         }
         this.theSoat = theSoat;
         this.theTecnomechanics = theTecnomechanics;
@@ -96,6 +97,22 @@ public abstract class Vehicle {
         this.theStatus = theStatus;
     }
 
+    public int getSoatDate(){
+        return theSoat.getYear();
+    }
+
+    public int getTecDate(){
+        return theTecnomechanics.getYear();
+    }
+
+    public boolean existDoc(){
+        boolean check = true;
+        if(theSoat==null && theTecnomechanics==null){
+            check = false;
+        }
+        return check;
+    }
+
     public String toString(){
         String owCard = "";
         String soat = "";
@@ -115,8 +132,12 @@ public abstract class Vehicle {
         }else{
             tecno = theTecnomechanics.toString();
         }
+        String sPrice = "";
+        if(sellPrice==0){
+            sPrice = " (No calculado)";
+        }
         return "\nPrecio base: " + basePrice + "\n" +
-        "Precio de venta: " + sellPrice + "\n" +
+        "Precio de venta: " + sellPrice + sPrice + "\n" +
         "Marca: " + brand + "\n" +
         "Año del modelo: " + model + "\n" +
         "cilindraje: " + cylinderCapacity + "\n" +

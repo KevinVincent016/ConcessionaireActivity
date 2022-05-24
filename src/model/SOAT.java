@@ -4,7 +4,7 @@ public class SOAT extends Document {
 
     private double coverageAmount;
 
-    public SOAT(double price, String year, int image, double coverageAmount){
+    public SOAT(double price, int year, int image, double coverageAmount){
         super(price, year, image);
         this.coverageAmount=coverageAmount;
     }
@@ -15,6 +15,10 @@ public class SOAT extends Document {
 
     public void setCoverageAmount(double coverageAmount) {
         this.coverageAmount = coverageAmount;
+    }
+
+    public int getYear(){
+        return super.getYear();
     }
 
     @Override

@@ -9,11 +9,11 @@ public class HybridCar extends Car implements BatteryConsumption,FuelConsumption
     private FuelType hybridFuelType;
     private ChargerType hybridChargerType;
 
-    public HybridCar(double basePrice, String brand, int model, int cylinderCapacity, int  klm, OwnershipCard ownershipCard, String plate, int statusOption, SOAT theSoat, Tecnomechanics theTecnomechanics, int doorsNumber, boolean polarization, int cartype, double fuelCapacity, double fuelConsume, int fuelOption, double batteryDuration, double batteryConsume, int chargerOption){
+    public HybridCar(double basePrice, String brand, int model, int cylinderCapacity, int  klm, OwnershipCard ownershipCard, String plate, int statusOption, SOAT theSoat, Tecnomechanics theTecnomechanics, int doorsNumber, boolean polarization, int cartype, double fuelCapacity, int fuelOption, double batteryDuration, int chargerOption){
         super(basePrice, brand, model, cylinderCapacity, klm, ownershipCard, plate, statusOption, theSoat, theTecnomechanics, doorsNumber, polarization, cartype);
         this.fuelCapacity=fuelCapacity;
-        this.fuelConsume=fuelConsume;
-        this.batteryConsume=batteryConsume;
+        this.fuelConsume=calculateFuelConsume();
+        this.batteryConsume=calculateBatteryConsume();
         this.batteryDuration=batteryDuration;
         switch(fuelOption){
             case 1:
@@ -83,11 +83,16 @@ public class HybridCar extends Car implements BatteryConsumption,FuelConsumption
 
     public double calculateBatteryConsume(){
         double consume = 0.0;
+        if(hybridChargerType==ChargerType.RAPIDO){
+            consume = batteryDuration*(super.getCylinderCapacity()/200);
+        }else if(hybridChargerType==ChargerType.NORMAL){
+            consume = (batteryDuration + 7)*(super.getCylinderCapacity()/200);
+        }
         return consume;
     }
 
     public double calculateFuelConsume(){
-        double consume = 0.0;
+        double consume = fuelCapacity*(super.getCylinderCapacity()/180);
         return consume;
     }
 

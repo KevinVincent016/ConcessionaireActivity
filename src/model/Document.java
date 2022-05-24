@@ -3,10 +3,10 @@ package model;
 public abstract class Document {
     
     private double price;
-    private String year;
+    private int year;
     private int image;
 
-    public Document(double price, String year, int image){
+    public Document(double price, int year, int image){
         this.price=price;
         this.year=year;
         this.image=image;
@@ -20,11 +20,11 @@ public abstract class Document {
         this.price = price;
     }
 
-    public String getYear() {
+    public int getYear() {
         return this.year;
     }
 
-    public void setYear(String year) {
+    public void setYear(int year) {
         this.year = year;
     }
 

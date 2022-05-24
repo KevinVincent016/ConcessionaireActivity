@@ -6,10 +6,10 @@ public class ElectricCar extends Car implements BatteryConsumption{
     private double batteryConsume;
     private ChargerType chargerType;
 
-    public ElectricCar(double basePrice, String brand, int model, int cylinderCapacity, int klm, OwnershipCard ownershipCard, String plate, int statusOption, SOAT theSoat, Tecnomechanics theTecnomechanics, int doorsNumber, boolean polarization, int cartype, double batteryDuration, double batteryConsume, int chargerOption){
+    public ElectricCar(double basePrice, String brand, int model, int cylinderCapacity, int klm, OwnershipCard ownershipCard, String plate, int statusOption, SOAT theSoat, Tecnomechanics theTecnomechanics, int doorsNumber, boolean polarization, int cartype, double batteryDuration, int chargerOption){
         super(basePrice, brand, model, cylinderCapacity, klm, ownershipCard, plate, statusOption, theSoat, theTecnomechanics, doorsNumber, polarization, cartype);
         this.batteryDuration = batteryDuration;
-        this.batteryConsume = batteryConsume;
+        this.batteryConsume = calculateBatteryConsume();
         chargerType = null;
         if(chargerOption==1){
             chargerType = ChargerType.NORMAL;
@@ -44,6 +44,11 @@ public class ElectricCar extends Car implements BatteryConsumption{
 
     public double calculateBatteryConsume(){
         double consume = 0.0;
+        if(chargerType==ChargerType.RAPIDO){
+            consume = (batteryDuration + 13)*(super.getCylinderCapacity()/100);
+        }else if(chargerType==ChargerType.NORMAL){
+            consume = (batteryDuration + 18)*(super.getCylinderCapacity()/100);
+        }
         return consume;
     }
 

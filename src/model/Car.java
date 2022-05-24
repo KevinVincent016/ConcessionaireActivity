@@ -12,9 +12,9 @@ public abstract class Car extends Vehicle {
         this.polarization=polarization;
         theType = null;
         if(cartype == 1){
-            theType = theType.CAMIONETA;
+            theType = CarType.CAMIONETA;
         }else if(cartype == 2){
-            theType = theType.SEDAN;
+            theType = CarType.SEDAN;
         }
     }
 

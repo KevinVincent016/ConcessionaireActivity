@@ -4,7 +4,7 @@ public class Tecnomechanics extends Document {
     
     private int gasLevels;
 
-    public Tecnomechanics(double price, String year, int image, int gasLevels){
+    public Tecnomechanics(double price, int year, int image, int gasLevels){
         super(price, year, image);
         this.gasLevels=gasLevels;
     }
