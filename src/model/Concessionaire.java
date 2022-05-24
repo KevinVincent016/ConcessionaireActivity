@@ -35,6 +35,8 @@ public class Concessionaire {
             theTecnomechanics = null;
         }
         GasolineCar theGCar = new GasolineCar(basePrice, brand, model, cylinderCapacity, klm, theOwnershipCard, plate, statusOption, theSoat, theTecnomechanics, doorsNumber, polarization, cartype, fuelCapacity, fuelOption);
+        double fuelConsume = theGCar.calculateFuelConsume();
+        theGCar.setFuelConsume(fuelConsume);
         theVehicles.add(theGCar);
         out = "Carro de modelo " + model + " de la marca " + brand + " registrado" + "\n Enter para continuar";
         return out;
@@ -55,6 +57,8 @@ public class Concessionaire {
             theTecnomechanics = null;
         }
         ElectricCar theECar = new ElectricCar(basePrice, brand, model, cylinderCapacity, klm, theOwnershipCard, plate, statusOption, theSoat, theTecnomechanics, doorsNumber, polarization, cartype, batteryDuration, chargerOption);
+        double batteryConsume = theECar.calculateBatteryConsume();
+        theECar.setBatteryConsume(batteryConsume);
         theVehicles.add(theECar);
         out = "Carro de modelo " + model + " de la marca " + brand + " registrado" + "\n Enter para continuar";
         return out;
@@ -75,6 +79,10 @@ public class Concessionaire {
             theTecnomechanics = null;
         }
         HybridCar theHCar = new HybridCar(basePrice, brand, model, cylinderCapacity, klm, theOwnershipCard, plate, statusOption, theSoat, theTecnomechanics, doorsNumber, polarization, cartype, fuelCapacity, fuelOption, batteryDuration, chargerOption);
+        double fuelConsume = theHCar.calculateFuelConsume();
+        theHCar.setFuelConsume(fuelConsume);
+        double batteryConsume = theHCar.calculateBatteryConsume();
+        theHCar.setBatteryConsume(batteryConsume);
         theVehicles.add(theHCar);
         out = "Carro de modelo " + model + " de la marca " + brand + " registrado" + "\n Enter para continuar";
         return out;
@@ -95,8 +103,10 @@ public class Concessionaire {
             theTecnomechanics = null;
         }
         Motorcycle theMoto = new Motorcycle(basePrice, brand, model, cylinderCapacity, klm, theOwnershipCard, plate, statusOption, theSoat, theTecnomechanics, fuelCapacity, motoOption);
+        double fuelConsume = theMoto.calculateFuelConsume();
+        theMoto.setFuelConsume(fuelConsume);
         theVehicles.add(theMoto);
-        out = "Moto de modelo " + model + " de la marca " + brand + " registrado" + "\n Enter para continuar";
+        out = "Moto de modelo " + model + " de la marca " + brand + " registrado";
         return out;
     }
 
@@ -237,9 +247,42 @@ public class Concessionaire {
             }
             for(int k=0;k<theVehicles.size();k++){
                 if(theVehicles.get(k).getTheStatus()==Status.USADO){
-                    out += "\nVehiculo nuevo #" + (k+1) + "\n" + 
+                    out += "\nVehiculo usado #" + (k+1) + "\n" + 
                     theVehicles.get(k).toString();
                 }
+            }
+        }
+        return out;
+    }
+
+    public String documentStatus(String plate){
+        String out = "";
+        for(int i=0;i<theVehicles.size();i++){
+            if(theVehicles.get(i).getPlate().equals(plate)){
+                String owCard = "";
+                String soat = "";
+                String tecno = "";
+                OwnershipCard ownershipCard = theVehicles.get(i).getTheOwnershipCard();
+                SOAT theSoat = theVehicles.get(i).getTheSoat();
+                Tecnomechanics theTecnomechanics = theVehicles.get(i).getTecnomechanics();
+                if(ownershipCard==null){
+                    owCard = "\nNo cuenta con tarjeta de propiedad";
+                }else{
+                    owCard = ownershipCard.toString();
+                }
+                if(theSoat==null){
+                    soat = "\nNo cuenta con SOAT";
+                }else{
+                    soat = theSoat.toString();
+                }
+                if(theTecnomechanics==null){
+                    tecno = "\nNo cuenta con tecnomecanica";
+                }else{
+                    tecno = theTecnomechanics.toString();
+                }
+                out += "\nEstado del SOAT:\n" + soat +
+                "\nEstado de tecnomecanica:\n" + tecno +
+                "\nEstado de tarjeta de propiedad:\n" + owCard;
             }
         }
         return out;

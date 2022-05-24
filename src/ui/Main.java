@@ -60,13 +60,13 @@ public class Main {
             generateInform();
 			break;
 		case 4:
-            test();
+            documentationStatus();
 			break;
         case 5:
-
+            
             break;
         case 6:
-
+            test();
             break;
 		default:
 			System.out.println("Error, opción no válida");
@@ -788,6 +788,13 @@ public class Main {
         System.out.println("(3) Autos nuevos/usados");
         int answer = sc.nextInt();
         System.out.println(theConcessionaire.generateInfo(answer));
+    }
+
+    public void documentationStatus(){
+        System.out.println("Para generar el estado de la documentacion de un vehiculo primero debe indicar la placa");
+        String plate = sc.nextLine();
+        System.out.println("El estado de los documentos es el siguiente:");
+        System.out.println(theConcessionaire.documentStatus(plate));
     }
 
     public void test(){

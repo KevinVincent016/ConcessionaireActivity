@@ -113,6 +113,18 @@ public abstract class Vehicle {
         return check;
     }
 
+    public SOAT getTheSoat(){
+        return theSoat;
+    }
+
+    public Tecnomechanics getTecnomechanics(){
+        return theTecnomechanics;
+    }
+
+    public OwnershipCard getTheOwnershipCard(){
+        return ownershipCard;
+    }
+
     public String toString(){
         String owCard = "";
         String soat = "";

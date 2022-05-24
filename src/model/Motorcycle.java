@@ -10,7 +10,6 @@ public class Motorcycle extends Vehicle implements FuelConsumption{
     public Motorcycle(double basePrice, String brand, int model, int cylinderCapacity, int klm, OwnershipCard ownershipCard, String plate, int statusOption, SOAT theSoat, Tecnomechanics theTecnomechanics, double fuelCapacity, int motoOption){
         super(basePrice, brand, model, cylinderCapacity, klm, ownershipCard, plate, statusOption, theSoat, theTecnomechanics);
         this.fuelCapacity=fuelCapacity;
-        this.fuelConsume=calculateFuelConsume();
         switch(motoOption){
             case 1:
             theMotorcycleType = MotorcycleType.CROSS;
